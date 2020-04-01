@@ -1,0 +1,25 @@
+<%- include("partials/header") %>
+
+<div class="container">
+  <h1>These are your posts.</h1>
+</div>
+
+<div class="container">
+
+  <table class="table">
+
+    <% data.forEach(function(item){ %>
+
+      <tr>
+        <td><a href="/p/<%= item._id %>"><%= item.title %></td>
+        <td><a href="/d/<%= item._id %>"><ion-icon name="trash-outline"></ion-icon></a></td>
+        <td><%= item.dateString %></td>
+      </tr>
+
+    <%})%>
+
+  </table>
+
+</div>
+
+<%- include("partials/footer") %>

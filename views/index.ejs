@@ -1,0 +1,19 @@
+<%- include("partials/header") %>
+
+<div class="container">
+
+  <h1>This is your blog.</h1>
+
+  <% data.forEach(function(item){ %>
+
+    <h2><%= item.title %></h2>
+
+    <p><%= item.body%></p>
+
+    <p>Posted on <%= item.dateString %></p>
+
+  <% }); %>
+
+</div>
+
+<%- include("partials/footer") %>
