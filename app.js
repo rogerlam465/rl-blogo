@@ -88,11 +88,25 @@ app.get("/p/:id/edit", function (req, res) {
   Blogpost.findById(req.params.id, function (err, foundPost) {
     if (err) {
       console.log(err);
-      res.redirect("/p/" + req.param.id);
+      res.redirect("/p/" + req.params.id);
     } else {
       res.render("edit", { data: foundPost });
     };
   });
+});
+
+// update route
+
+app.put("/p/:id", function (req, res) {
+  req.body.data.body = req.sanitize(req.body.data.body);
+  Blogpost.findByIdAndUpdate(req.params.id, req.body.data, function (err, updatedPost) {
+    if (err) {
+      console.log(err);
+      res.redirect("/p/" + updatedPost._id);
+    } else {
+      res.redirect("/p/" + updatedPost._id);
+    }
+  })
 });
 
 // delete blog post page

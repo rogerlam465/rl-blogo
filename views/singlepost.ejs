@@ -6,7 +6,14 @@
   <h2><%= item.title %></h2>
 
   <p><%= item.body %></p>
-  <p>Posted on <%= item.dateString %> - Edit</p>
+  <p>Posted on <%= item.dateString %> -
+    <a href="/p/<%= item._id %>/edit">
+      <ion-icon name="pencil-outline"></ion-icon>
+    </a>
+    <a href="/d/<%= item._id %>">
+      <ion-icon name="trash-outline"></ion-icon>
+    </a>
+  </p>
 
 </div>
 
