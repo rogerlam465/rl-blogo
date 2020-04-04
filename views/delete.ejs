@@ -2,12 +2,17 @@
 
 <div class="container">
 
-  <h1>These is the post you want to delete.</h1>
+  <h1>This is the post you want to delete.</h1>
 
   <p>Are you quite certain that you wish to delete this post? There is <em>no</em> way to recover it once deleted.</p>
 
-  <button class="btn btn-outline-danger">Yes. Remove it from this mortal coil.</button>
-  <button class="btn btn-outline-success">No. It shall live another day.</button>
+  <form action="/d/<%= item._id %>?_method=DELETE" method="POST">
+
+    <button class="btn btn-outline-danger">Yes. Remove it from this mortal coil.</button>
+
+  </form>
+
+  <a href="/p/<%= item._id %>" class="btn btn-outline-success">No. It shall live another day.</a>
 
 </div>
 
@@ -16,7 +21,7 @@
   <h2><%= item.title %></h2>
 
   <p><%= item.body %></p>
-  <p>Posted on <%= item.dateString %> - Edit</p>
+  <p>Posted on <%= item.dateString %></p>
 
 </div>
 

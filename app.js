@@ -109,7 +109,7 @@ app.put("/p/:id", function (req, res) {
   })
 });
 
-// delete blog post page
+// confirm delete blog post page
 
 app.get("/d/:id", function (req, res) {
   var id = req.params.id;
@@ -118,6 +118,20 @@ app.get("/d/:id", function (req, res) {
       console.log(err);
     } else {
       res.render("delete", { item: foundPost });
+    }
+  })
+});
+
+// actual delete blog post route
+
+app.delete("/d/:id", function (req, res) {
+  console.log(req.params.id);
+  Blogpost.findByIdAndRemove(req.params.id, function (err) {
+    if (err) {
+      console.log(err);
+      res.redirect("/p/" + req.params.id);
+    } else {
+      res.redirect("/");
     }
   })
 });
