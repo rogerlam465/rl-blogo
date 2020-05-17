@@ -16,6 +16,8 @@ app.use(express.static("public"));
 app.use(methodOverride("_method"));
 app.use(expressSanitizer());
 
+app.use(express.static('public'));
+
 // Mongo told me to use those two parameters, but I don't know what their use implies.
 
 mongoose.connect("mongodb://localhost/blogo", { useUnifiedTopology: true, useNewUrlParser: true });

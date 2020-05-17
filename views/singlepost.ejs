@@ -1,19 +1,28 @@
 <%- include("partials/header") %>
 
 <div class="container">
-  <h1>This is the post you requested.</h1>
 
-  <h2><%= item.title %></h2>
+  <div class="pageId">
 
-  <p><%= item.body %></p>
-  <p>Posted on <%= item.dateString %> -
-    <a href="/p/<%= item._id %>/edit">
-      <ion-icon name="pencil-outline"></ion-icon>
-    </a>
-    <a href="/d/<%= item._id %>">
-      <ion-icon name="trash-outline"></ion-icon>
-    </a>
-  </p>
+    <h1>This is the post you requested.</h1>
+
+  </div>
+
+  <div class="post">
+
+    <h2><%= item.title %></h2>
+
+    <p><%= item.body %></p>
+    <p>Posted on <%= item.dateString %> -
+      <a href="/p/<%= item._id %>/edit">
+        <ion-icon name="pencil-outline"></ion-icon>
+      </a>
+      <a href="/d/<%= item._id %>">
+        <ion-icon name="trash-outline"></ion-icon>
+      </a>
+    </p>
+
+  </div>
 
 </div>
 
