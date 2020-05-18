@@ -93,6 +93,24 @@ table {
     margin-top: 15px;
 }
 
-ion-icon {
-    color: white;
+form > label {
+    display: block;
+    margin: 10px 0;
+}
+
+form > input {
+    width: 60%;
+}
+
+form > textarea {
+    display: block;
+    margin: 10px 0;
+    width: 60%;
+    height: 400px;
+}
+
+.formButton {
+    width: 80px;
+    margin-bottom: 10px;
+    margin-right: 5px;
 }

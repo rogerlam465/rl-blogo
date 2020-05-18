@@ -2,26 +2,38 @@
 
 <div class="container">
 
-  <h1>This is the post you want to delete.</h1>
+  <div id="pageLoc">
 
-  <p>Are you quite certain that you wish to delete this post? There is <em>no</em> way to recover it once deleted.</p>
+    <h1>This is the post you want to delete.</h1>
 
-  <form style="display: inline;" action="/d/<%= item._id %>?_method=DELETE" method="POST">
+  </div>
 
-    <button class="btn btn-outline-danger">Yes. Remove it from this mortal coil.</button>
+  <div class="post">
 
-  </form>
+    <p>Are you quite certain that you wish to delete this post? There is <em>no</em> way to recover it once deleted.</p>
 
-  <a href="/p/<%= item._id %>" class="btn btn-outline-success">No. It shall live another day.</a>
+    <form style="display: inline;" action="/d/<%= item._id %>?_method=DELETE" method="POST">
+
+      <button>Yes. Remove it from this mortal coil.</button>
+
+    </form>
+
+    <a href="/p/<%= item._id %>">No. It shall live another day.</a>
+
+  </div>
 
 </div>
 
 <div class="container">
 
-  <h2><%= item.title %></h2>
+  <div class="post">
 
-  <p><%= item.body %></p>
-  <p>Posted on <%= item.dateString %></p>
+    <h2><%= item.title %></h2>
+
+    <p><%= item.body %></p>
+    <p>Posted on <%= item.dateString %></p>
+
+  </div>
 
 </div>
 
