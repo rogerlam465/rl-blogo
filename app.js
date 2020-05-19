@@ -3,6 +3,10 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var expressSanitizer = require('express-sanitizer');
 var methodOverride = require('method-override');
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
+var User = require("./models/user");
+var Blogpost = require("./models/blogpost");
 
 // initialize various libraries
 
@@ -21,19 +25,6 @@ app.use(express.static('public'));
 // Mongo told me to use those two parameters, but I don't know what their use implies.
 
 mongoose.connect("mongodb://localhost/blogo", { useUnifiedTopology: true, useNewUrlParser: true });
-
-var Schema = mongoose.Schema;
-
-// define main Schema to use
-
-var blogSchema = new Schema({
-  title: String,
-  body: String,
-  dateString: String,
-  date: { type: Date, default: Date.now }
-});
-
-var Blogpost = mongoose.model("Blogpost", blogSchema);
 
 // index page
 // this page displays blog posts
@@ -148,6 +139,8 @@ app.post("/", function (req, res) {
 
   // grab current date
 
+  // I seem to recall that Mongo does funky things with the date. So.
+
   var newDate = new Date();
 
   // construct the date in string format, adding zeros as necessary to single digit returns
@@ -171,6 +164,14 @@ app.post("/", function (req, res) {
       res.redirect("/");
     }
   })
+});
+
+// LOGIN LOGIC
+
+// login link
+
+app.get("/login", function (req, res) {
+  res.render("login");
 });
 
 // catchall route

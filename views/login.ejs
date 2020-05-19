@@ -1,0 +1,29 @@
+<%- include("partials/header") %>
+
+<div class="pageId">
+  <h1>This is where you log in.</h1>
+</div>
+
+<div class="container">
+
+  <div class="item">
+
+    <form action="/" method="POST">
+
+      <label for="blogPostTitle">Username</label>
+      <input type="text" class="form-control" name="data[username]" value="Enter username" id="username">
+
+      <label for="blogPostBody">Password</label>
+      <input type="password" class="form-control" name="data[password]" id="password">
+
+      <input class="formButton" type="submit" value="Submit">
+
+      <input class="formButton" type="submit" value="Cancel" formaction="/">
+
+    </form>
+
+  </div>
+
+</div>
+
+<%- include("partials/footer") %>
