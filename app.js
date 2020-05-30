@@ -8,9 +8,26 @@ var LocalStrategy = require('passport-local');
 var User = require("./models/user");
 var Blogpost = require("./models/blogpost");
 
-// initialize various libraries
-
 var app = express();
+
+// configure passport
+
+app.use(require('express-session')({
+  secret: "apple grove elephant masticate down freezer",
+  resave: false,
+  saveUninitialized: false
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+// I still don't know what this does.
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// initialize various libraries
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -25,6 +42,8 @@ app.use(express.static('public'));
 // Mongo told me to use those two parameters, but I don't know what their use implies.
 
 mongoose.connect("mongodb://localhost/blogo", { useUnifiedTopology: true, useNewUrlParser: true });
+
+// ===== ROUTES BEGIN =====
 
 // index page
 // this page displays blog posts
@@ -166,12 +185,38 @@ app.post("/", function (req, res) {
   })
 });
 
-// LOGIN LOGIC
+// ===== AUTH ROUTES =====
 
 // login link
 
 app.get("/login", function (req, res) {
   res.render("login");
+});
+
+app.post("/login", passport.authenticate("local",
+  {
+    successRedirect: "/",
+    failureRedirect: "/login"
+  }));
+
+// register link
+
+app.get("/register", function (req, res) {
+  res.render("register");
+});
+
+app.post("/register", function (req, res) {
+  let newUser = new User({ username: req.body.username });
+  User.register(newUser, req.body.password, function (err, user) {
+    console.log("in User callback");
+    if (err) {
+      console.log(err);
+      return res.render('register');
+    }
+    passport.authenticate("local")(req, res, function () {
+      res.redirect("/");
+    });
+  });
 });
 
 // catchall route
